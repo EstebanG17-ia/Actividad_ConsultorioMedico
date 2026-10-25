@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}Clínica Salud Total{% endblock %} | Consultorio Médico</title>
+    <link rel="stylesheet" href="{% static 'citas/css/estilos.css' %}">
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenedor">
+            <h1>Sistema de Consultorio Médico</h1>
+            <p class="subtitulo">Gestión de pacientes y citas</p>
+        </div>
+    </header>
+
+    <nav class="menu">
+        <div class="contenedor">
+            <a href="{% url 'inicio' %}" class="{% if request.path == '/' %}activo{% endif %}">Inicio</a>
+            <a href="{% url 'lista_pacientes' %}" class="{% if '/pacientes' in request.path %}activo{% endif %}">Pacientes</a>
+            <a href="{% url 'lista_citas' %}" class="{% if request.path == '/citas/' %}activo{% endif %}">Citas</a>
+            <a href="{% url 'citas_pendientes' %}" class="{% if 'pendientes' in request.path %}activo{% endif %}">Citas pendientes</a>
+        </div>
+    </nav>
+
+    <main class="contenedor contenido">
+        {% block contenido %}{% endblock %}
+    </main>
+
+    <footer class="pie">
+        <div class="contenedor">    
+        </div>
+    </footer>
+</body>
+</html>

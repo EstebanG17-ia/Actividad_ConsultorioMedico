@@ -1,0 +1,48 @@
+{% extends "citas/base.html" %}
+
+{% block titulo %}{{ paciente }}{% endblock %}
+
+{% block contenido %}
+<h2>{{ paciente.nombre }} {{ paciente.apellido }}</h2>
+
+<section class="ficha">
+    <h3>Información personal</h3>
+    <dl>
+        <dt>Nombre</dt><dd>{{ paciente.nombre }}</dd>
+        <dt>Apellido</dt><dd>{{ paciente.apellido }}</dd>
+        <dt>Edad</dt><dd>{{ paciente.edad }} años</dd>
+        <dt>Teléfono</dt><dd>{{ paciente.telefono }}</dd>
+        <dt>Correo</dt><dd>{{ paciente.correo }}</dd>
+    </dl>
+</section>
+
+<h3>Citas del paciente</h3>
+{% if citas %}
+<div class="tabla-contenedor">
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Motivo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in citas %}
+            <tr>
+                <td>{{ c.fecha|date:"d/m/Y" }}</td>
+                <td>{{ c.hora|time:"H:i" }}</td>
+                <td>{{ c.motivo }}</td>
+                <td><span class="etiqueta {{ c.estado|lower }}">{{ c.estado }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="vacio">Este paciente no tiene citas registradas.</p>
+{% endif %}
+
+<p><a class="boton" href="{% url 'lista_pacientes' %}">← Volver al listado</a></p>
+{% endblock %}

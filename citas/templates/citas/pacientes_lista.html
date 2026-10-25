@@ -1,0 +1,36 @@
+{% extends "citas/base.html" %}
+
+{% block titulo %}Pacientes{% endblock %}
+
+{% block contenido %}
+<h2>Pacientes registrados</h2>
+
+{% if pacientes %}
+<div class="tabla-contenedor">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Teléfono</th>
+                <th>Detalle</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in pacientes %}
+            <tr>
+                <td>{{ p.nombre }}</td>
+                <td>{{ p.apellido }}</td>
+                <td>{{ p.edad }}</td>
+                <td>{{ p.telefono }}</td>
+                <td><a class="boton" href="{% url 'detalle_paciente' p.id %}">Ver</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="vacio">No hay pacientes registrados.</p>
+{% endif %}
+{% endblock %}

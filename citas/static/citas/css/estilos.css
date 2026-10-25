@@ -1,0 +1,92 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenedor { width: 100%; max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+
+/* Encabezado */
+.encabezado { background: #0f766e; color: #fff; padding: 1.5rem 0; }
+.encabezado h1 { font-size: 1.8rem; }
+.subtitulo { opacity: 0.85; }
+
+/* Menú */
+.menu { background: #134e4a; }
+.menu .contenedor { display: flex; flex-wrap: wrap; }
+.menu a {
+    color: #ccfbf1;
+    text-decoration: none;
+    padding: 0.9rem 1.2rem;
+    transition: background 0.2s;
+}
+.menu a:hover, .menu a.activo { background: #0f766e; color: #fff; }
+
+/* Contenido */
+.contenido { flex: 1; padding-top: 2rem; padding-bottom: 2rem; }
+.contenido h2 { margin-bottom: 1rem; color: #0f766e; }
+.contenido h3 { margin: 1.5rem 0 0.8rem; }
+.contenido a { color: #0f766e; }
+
+/* Tarjetas de inicio */
+.tarjetas { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.tarjeta {
+    background: #fff; border-radius: 10px; padding: 1.5rem; text-align: center;
+    text-decoration: none; color: #1e293b !important;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    display: flex; flex-direction: column; gap: 0.3rem;
+    border-top: 4px solid #0f766e; transition: transform 0.2s;
+}
+.tarjeta:hover { transform: translateY(-3px); }
+.tarjeta .numero { font-size: 2.5rem; font-weight: bold; color: #0f766e; }
+.tarjeta-pendiente { border-top-color: #f59e0b; }
+.tarjeta-pendiente .numero { color: #d97706; }
+
+/* Tablas */
+.tabla-contenedor { overflow-x: auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 0.8rem 1rem; text-align: left; white-space: nowrap; }
+th { background: #0f766e; color: #fff; }
+tbody tr:nth-child(even) { background: #f8fafc; }
+tbody tr:hover { background: #ccfbf1; }
+
+/* Ficha del paciente */
+.ficha { background: #fff; padding: 1.2rem 1.5rem; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.ficha h3 { margin-top: 0; }
+.ficha dl { display: grid; grid-template-columns: 120px 1fr; gap: 0.4rem 1rem; }
+.ficha dt { font-weight: bold; color: #475569; }
+
+/* Etiquetas de estado */
+.etiqueta { display: inline-block; padding: 0.2rem 0.7rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; }
+.etiqueta.pendiente { background: #fef3c7; color: #92400e; }
+.etiqueta.confirmada { background: #dcfce7; color: #166534; }
+.etiqueta.cancelada { background: #fee2e2; color: #991b1b; }
+
+/* Botones */
+.boton {
+    display: inline-block; background: #0f766e; color: #fff !important;
+    padding: 0.3rem 0.9rem; border-radius: 6px; text-decoration: none; font-size: 0.9rem;
+}
+.boton:hover { background: #134e4a; }
+p .boton { margin-top: 1rem; }
+
+.vacio { background: #fff; padding: 1.5rem; border-radius: 10px; text-align: center; color: #64748b; }
+
+/* Pie */
+.pie { background: #134e4a; color: #ccfbf1; text-align: center; padding: 1rem 0; }
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .encabezado h1 { font-size: 1.4rem; }
+    .menu .contenedor { flex-direction: column; padding: 0; }
+    .menu a { padding: 0.7rem 1rem; }
+    .ficha dl { grid-template-columns: 1fr; }
+    .ficha dt { margin-top: 0.5rem; }
+    th, td { padding: 0.6rem; font-size: 0.9rem; }
+}

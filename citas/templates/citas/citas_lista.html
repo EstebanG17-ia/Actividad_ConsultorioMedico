@@ -1,0 +1,36 @@
+{% extends "citas/base.html" %}
+
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block contenido %}
+<h2>{{ titulo }}</h2>
+
+{% if citas %}
+<div class="tabla-contenedor">
+    <table>
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Motivo</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in citas %}
+            <tr>
+                <td><a href="{% url 'detalle_paciente' c.paciente.id %}">{{ c.paciente }}</a></td>
+                <td>{{ c.fecha|date:"d/m/Y" }}</td>
+                <td>{{ c.hora|time:"H:i" }}</td>
+                <td>{{ c.motivo }}</td>
+                <td><span class="etiqueta {{ c.estado|lower }}">{{ c.estado }}</span></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<p class="vacio">No hay citas para mostrar.</p>
+{% endif %}
+{% endblock %}

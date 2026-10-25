@@ -1,0 +1,23 @@
+{% extends "citas/base.html" %}
+
+{% block titulo %}Inicio{% endblock %}
+
+{% block contenido %}
+<h2>Bienvenido al sistema</h2>
+<p>Consulta la información de los pacientes y de las citas médicas programadas.</p>
+
+<div class="tarjetas">
+    <a class="tarjeta" href="{% url 'lista_pacientes' %}">
+        <span class="numero">{{ total_pacientes }}</span>
+        <span>Pacientes registrados</span>
+    </a>
+    <a class="tarjeta" href="{% url 'lista_citas' %}">
+        <span class="numero">{{ total_citas }}</span>
+        <span>Citas en total</span>
+    </a>
+    <a class="tarjeta tarjeta-pendiente" href="{% url 'citas_pendientes' %}">
+        <span class="numero">{{ total_pendientes }}</span>
+        <span>Citas pendientes</span>
+    </a>
+</div>
+{% endblock %}
