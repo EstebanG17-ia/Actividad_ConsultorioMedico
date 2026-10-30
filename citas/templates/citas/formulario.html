@@ -1,0 +1,35 @@
+{% extends "citas/base.html" %}
+
+{% block titulo %}{{ titulo }}{% endblock %}
+
+{% block contenido %}
+<h2>{{ titulo }}</h2>
+
+{# novalidate: las validaciones se ejecutan en el backend (Django), no solo en el navegador #}
+<form method="post" class="formulario" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <ul class="errores errores-generales">
+        {% for error in form.non_field_errors %}<li>{{ error }}</li>{% endfor %}
+    </ul>
+    {% endif %}
+
+    {% for campo in form %}
+    <div class="campo{% if campo.errors %} campo-error{% endif %}">
+        <label for="{{ campo.id_for_label }}">{{ campo.label }}</label>
+        {{ campo }}
+        {% if campo.errors %}
+        <ul class="errores">
+            {% for error in campo.errors %}<li>{{ error }}</li>{% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <div class="acciones-formulario">
+        <button type="submit" class="boton">{{ texto_boton }}</button>
+        <a class="boton boton-gris" href="{% if arg_cancelar %}{% url url_cancelar arg_cancelar %}{% else %}{% url url_cancelar %}{% endif %}">Cancelar</a>
+    </div>
+</form>
+{% endblock %}

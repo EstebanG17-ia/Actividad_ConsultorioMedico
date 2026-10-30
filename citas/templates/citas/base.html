@@ -19,12 +19,20 @@
         <div class="contenedor">
             <a href="{% url 'inicio' %}" class="{% if request.path == '/' %}activo{% endif %}">Inicio</a>
             <a href="{% url 'lista_pacientes' %}" class="{% if '/pacientes' in request.path %}activo{% endif %}">Pacientes</a>
-            <a href="{% url 'lista_citas' %}" class="{% if request.path == '/citas/' %}activo{% endif %}">Citas</a>
+            <a href="{% url 'lista_citas' %}" class="{% if '/citas' in request.path and 'pendientes' not in request.path %}activo{% endif %}">Citas</a>
             <a href="{% url 'citas_pendientes' %}" class="{% if 'pendientes' in request.path %}activo{% endif %}">Citas pendientes</a>
         </div>
     </nav>
 
     <main class="contenedor contenido">
+        {% if messages %}
+        <ul class="mensajes" role="status">
+            {% for message in messages %}
+            <li class="mensaje {{ message.tags }}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
         {% block contenido %}{% endblock %}
     </main>
 

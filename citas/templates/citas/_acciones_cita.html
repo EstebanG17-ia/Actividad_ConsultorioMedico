@@ -1,0 +1,16 @@
+{# Botones de acción de una cita. Requiere: c (la cita) y next_url (a dónde volver). #}
+<div class="acciones">
+    <a class="boton boton-secundario" href="{% url 'cita_editar' c.id %}">Editar</a>
+    {% if c.estado != 'Cancelada' %}
+    <form method="post" action="{% url 'cita_cancelar' c.id %}" onsubmit="return confirm('¿Cancelar esta cita?');">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next_url }}">
+        <button type="submit" class="boton boton-aviso">Cancelar</button>
+    </form>
+    {% endif %}
+    <form method="post" action="{% url 'cita_eliminar' c.id %}" onsubmit="return confirm('¿Eliminar definitivamente esta cita? Esta acción no se puede deshacer.');">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next_url }}">
+        <button type="submit" class="boton boton-peligro">Eliminar</button>
+    </form>
+</div>

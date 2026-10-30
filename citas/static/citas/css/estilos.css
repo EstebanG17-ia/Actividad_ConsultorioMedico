@@ -90,3 +90,58 @@ p .boton { margin-top: 1rem; }
     .ficha dt { margin-top: 0.5rem; }
     th, td { padding: 0.6rem; font-size: 0.9rem; }
 }
+
+/* ===================== Práctica 2.3: formularios, CRUD y mensajes ===================== */
+
+/* Barra de título con botón de acción */
+.barra-titulo { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.8rem; margin-bottom: 1rem; }
+.barra-titulo h2 { margin-bottom: 0; }
+.accesos { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1rem 0; }
+.accesos .boton { margin-top: 0; }
+
+/* Botones (también <button>) y variantes */
+button.boton { border: 0; cursor: pointer; font-family: inherit; line-height: inherit; }
+.boton-grande { padding: 0.55rem 1.2rem; font-size: 1rem; }
+.boton-secundario { background: #2563eb; }
+.boton-secundario:hover { background: #1e40af; }
+.boton-aviso { background: #d97706; }
+.boton-aviso:hover { background: #b45309; }
+.boton-peligro { background: #dc2626; }
+.boton-peligro:hover { background: #991b1b; }
+.boton-gris { background: #64748b; }
+.boton-gris:hover { background: #475569; }
+p .boton, .acciones .boton { margin-top: 0; }
+
+/* Acciones en filas de tabla */
+.acciones { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; }
+.acciones form { display: inline; margin: 0; }
+td.acciones { display: table-cell; white-space: nowrap; }
+td.acciones .boton { margin-right: 0.3rem; }
+
+/* Mensajes de confirmación (django.contrib.messages) */
+.mensajes { list-style: none; margin-bottom: 1.2rem; display: grid; gap: 0.5rem; }
+.mensaje { padding: 0.8rem 1rem; border-radius: 8px; border-left: 5px solid; font-weight: 600; background: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.mensaje.success { background: #dcfce7; color: #166534; border-color: #16a34a; }
+.mensaje.error { background: #fee2e2; color: #991b1b; border-color: #dc2626; }
+.mensaje.info { background: #dbeafe; color: #1e40af; border-color: #2563eb; }
+.mensaje.warning { background: #fef3c7; color: #92400e; border-color: #f59e0b; }
+
+/* Formularios */
+.formulario { background: #fff; max-width: 640px; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+.campo { margin-bottom: 1.1rem; }
+.campo label { display: block; font-weight: 600; color: #475569; margin-bottom: 0.3rem; }
+.campo input, .campo select, .campo textarea {
+    width: 100%; padding: 0.6rem 0.75rem; font: inherit; color: #1e293b;
+    border: 1px solid #cbd5e1; border-radius: 6px; background: #fff;
+}
+.campo input:focus, .campo select:focus, .campo textarea:focus { outline: 2px solid #5eead4; border-color: #0f766e; }
+.campo-error input, .campo-error select, .campo-error textarea { border-color: #dc2626; background: #fef2f2; }
+.errores { list-style: none; margin-top: 0.3rem; color: #b91c1c; font-size: 0.9rem; font-weight: 600; }
+.errores-generales { background: #fee2e2; border-radius: 6px; padding: 0.7rem 1rem; margin: 0 0 1rem; }
+.acciones-formulario { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.acciones-formulario .boton { padding: 0.55rem 1.3rem; font-size: 1rem; margin-top: 0; }
+
+@media (max-width: 600px) {
+    .formulario { padding: 1rem; }
+    td.acciones { white-space: normal; }
+}

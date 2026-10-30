@@ -4,7 +4,12 @@
 
 {% block contenido %}
 <h2>Bienvenido al sistema</h2>
-<p>Consulta la información de los pacientes y de las citas médicas programadas.</p>
+<p>Consulta, registra y administra la información de los pacientes y de las citas médicas.</p>
+
+<p class="accesos">
+    <a class="boton boton-grande" href="{% url 'paciente_nuevo' %}">+ Registrar paciente</a>
+    <a class="boton boton-grande boton-aviso" href="{% url 'cita_nueva' %}">+ Programar cita</a>
+</p>
 
 <div class="tarjetas">
     <a class="tarjeta" href="{% url 'lista_pacientes' %}">

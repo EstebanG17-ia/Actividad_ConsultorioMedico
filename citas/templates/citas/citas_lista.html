@@ -3,7 +3,10 @@
 {% block titulo %}{{ titulo }}{% endblock %}
 
 {% block contenido %}
-<h2>{{ titulo }}</h2>
+<div class="barra-titulo">
+    <h2>{{ titulo }}</h2>
+    <a class="boton boton-grande" href="{% url 'cita_nueva' %}">+ Programar cita</a>
+</div>
 
 {% if citas %}
 <div class="tabla-contenedor">
@@ -15,6 +18,7 @@
                 <th>Hora</th>
                 <th>Motivo</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -25,6 +29,7 @@
                 <td>{{ c.hora|time:"H:i" }}</td>
                 <td>{{ c.motivo }}</td>
                 <td><span class="etiqueta {{ c.estado|lower }}">{{ c.estado }}</span></td>
+                <td>{% include "citas/_acciones_cita.html" with next_url=request.path %}</td>
             </tr>
             {% endfor %}
         </tbody>

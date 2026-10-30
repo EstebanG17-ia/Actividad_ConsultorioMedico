@@ -3,7 +3,13 @@
 {% block titulo %}{{ paciente }}{% endblock %}
 
 {% block contenido %}
-<h2>{{ paciente.nombre }} {{ paciente.apellido }}</h2>
+<div class="barra-titulo">
+    <h2>{{ paciente.nombre }} {{ paciente.apellido }}</h2>
+    <div class="acciones">
+        <a class="boton boton-secundario" href="{% url 'paciente_editar' paciente.id %}">Editar paciente</a>
+        <a class="boton boton-aviso" href="{% url 'cita_nueva' %}?paciente={{ paciente.id }}">Programar cita</a>
+    </div>
+</div>
 
 <section class="ficha">
     <h3>Información personal</h3>
@@ -26,6 +32,7 @@
                 <th>Hora</th>
                 <th>Motivo</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +42,7 @@
                 <td>{{ c.hora|time:"H:i" }}</td>
                 <td>{{ c.motivo }}</td>
                 <td><span class="etiqueta {{ c.estado|lower }}">{{ c.estado }}</span></td>
+                <td>{% include "citas/_acciones_cita.html" with next_url=request.path %}</td>
             </tr>
             {% endfor %}
         </tbody>
